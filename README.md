@@ -1,4 +1,3 @@
-Certainly! Below is a formatted README for your Cache Simulator project:
 
 # Cache Simulator
 
@@ -27,7 +26,7 @@ The Cache Simulator project provides a graphical user interface (GUI) applicatio
 
 Make sure you have the following installed:
 
-- Python (version x.x)
+- Python IDLE
 - Tkinter library
 
 ### Installation
