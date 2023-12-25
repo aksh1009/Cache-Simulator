@@ -1,7 +1,7 @@
-# cache_simulator/gui.py
+# gui.py
 import tkinter as tk
 from tkinter import scrolledtext
-from cache_simulator.cache_simulator import CacheSimulator  # Import CacheSimulator from cache_simulator module
+from cache_simulator import CacheSimulator
 
 class CacheSimulatorGUI:
     def __init__(self, master):
@@ -50,8 +50,3 @@ class CacheSimulatorGUI:
     def update_stats(self):
         self.log_text.delete(1.0, tk.END)
         self.cache_simulator.print_stats(self.log_text)
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    gui = CacheSimulatorGUI(root)
-    root.mainloop()
