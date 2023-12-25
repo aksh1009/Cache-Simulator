@@ -17,7 +17,20 @@ class CacheSimulator:
         self.cache[index].remove(tag)
         self.cache[index].append(tag)
 
-    def access_memory(self, address):
+    def display_cache(self, text_widget):
+        text_widget.insert(tk.END, "Cache\n")
+        text_widget.insert(tk.END, "-" * 120 + "\n")
+        text_widget.insert(tk.END, " ")
+        for i in range(self.associativity):
+            text_widget.insert(tk.END, f"{i:<28}")
+        text_widget.insert(tk.END, "\n" + "-" * 120 + "\n")
+        for i, cache_set in enumerate(self.cache):
+            text_widget.insert(tk.END, f"Set {i:<2} | ")
+            for tag in cache_set:
+                text_widget.insert(tk.END, f"{tag:<28}")
+            text_widget.insert(tk.END, "\n" + "-" * 120 + "\n")
+
+    def access_memory(self, address, text_widget):
         word_address = address // 4
         binary_address = format(address, '032b')
         offset = int(binary_address[-self.offset_bits:], 2)
@@ -26,51 +39,42 @@ class CacheSimulator:
 
         if tag in self.cache[index]:
             self.hits += 1
+            hit_or_miss = "HIT"
             self._lru_update(index, tag)
         else:
             self.misses += 1
+            hit_or_miss = "MISS"
             if len(self.cache[index]) < self.associativity:
                 self.cache[index].append(tag)
             else:
                 self.cache[index].pop(0)
                 self.cache[index].append(tag)
 
-    def simulate_memory_accesses(self, memory_accesses):
-        for address, _ in memory_accesses:
-            self.access_memory(address)
+        text_widget.insert(tk.END, "{:<15}{:<40}{:<40}{:<40}{:<40}{:<30}\n".format(
+            word_address, binary_address, tag, index, offset, hit_or_miss))
 
-    def print_stats(self):
-        print("\n" + "-" * 60)
-        print("Simulation Statistics")
-        print(f"Cache Size: {self.cache_size} bytes")
-        print(f"Block Size: {self.block_size} bytes")
-        print(f"Associativity: {self.associativity}")
-        print(f"Number of Blocks: {self.num_blocks}")
-        print(f"Number of Hits: {self.hits}")
-        print(f"Number of Misses: {self.misses}")
+    def simulate_memory_accesses(self, memory_accesses, text_widget):
+        text_widget.insert(tk.END, "{:<15}{:<40}{:<40}{:<40}{:<40}{:<30}\n".format(
+            "WordAddr", "BinAddr", "Tag", "Index", "Offset", "Hit/Miss"))
+        text_widget.insert(tk.END, "-" * 250 + "\n")
+        for address, _ in memory_accesses:
+            self.access_memory(address, text_widget)
+        text_widget.insert(tk.END, "-" * 250 + "\n")
+        self.display_cache(text_widget)
+
+    def print_stats(self, text_widget):
+        text_widget.insert(tk.END, "\n" + "-" * 60 + "\n")
+        text_widget.insert(tk.END, "Simulation Statistics\n")
+        text_widget.insert(tk.END, f"Cache Size: {self.cache_size} bytes\n")
+        text_widget.insert(tk.END, f"Block Size: {self.block_size} bytes\n")
+        text_widget.insert(tk.END, f"Associativity: {self.associativity}\n")
+        text_widget.insert(tk.END, f"Number of Blocks: {self.num_blocks}\n")
+        text_widget.insert(tk.END, f"Number of Hits: {self.hits}\n")
+        text_widget.insert(tk.END, f"Number of Misses: {self.misses}\n")
 
         # Calculate and display hit rate only if there are hits and misses
         if self.hits + self.misses > 0:
             hit_rate = self.hits / (self.hits + self.misses) * 100
-            print(f"Hit Rate: {hit_rate:.2f}%")
+            text_widget.insert(tk.END, f"Hit Rate: {hit_rate:.2f}%\n")
         else:
-            print("Hit Rate: N/A")
-
-# Example usage:
-cache_simulator = CacheSimulator(cache_size=64, block_size=8, associativity=2)
-memory_accesses = [
-    (0x0A, "R"),
-    (0x0B, "R"),
-    (0x0C, "R"),
-    (0x0D, "R"),
-    (0x0E, "R"),
-    (0x0F, "R"),
-    (0x10, "R"),
-    (0x11, "R"),
-    (0x12, "R"),
-    (0x13, "R"),
-    (0x14, "R"),
-]
-
-cache_simulator.simulate_memory_accesses(memory_accesses)
-cache_simulator.print_stats()
+            text_widget.insert(tk.END, "Hit Rate: N/A\n")
