@@ -1,84 +1,81 @@
 
-# Cache Simulator
+# **Cache Simulator**
 
-The Cache Simulator project provides a graphical user interface (GUI) application for simulating memory accesses and analyzing cache system performance. The simulator allows users to configure cache parameters and visualize the behavior of different cache configurations.
+## **Table of Contents**
 
-## Table of Contents
-
+- [Overview](#overview)
 - [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
 - [Usage](#usage)
-- [Implementation Details](#implementation-details)
-- [Contributing](#contributing)
-- [License](#license)
+  - [Launch the Application](#1-launch-the-application)
+  - [Configure Cache Parameters](#2-configure-cache-parameters)
+  - [Run Simulation](#3-run-simulation)
+  - [Update Statistics](#4-update-statistics)
+- [Screenshots](#screenshots)
 
-## Features
+## **Overview**
 
-- Simulate memory accesses and analyze cache hits and misses.
-- User-friendly GUI for configuring cache parameters.
-- Visual representation of cache interactions.
+**Cache Simulator** is a Python program that provides a visual representation of cache memory behavior. The simulator allows users to configure cache parameters, run simulations of memory accesses, and view detailed statistics.
 
-## Getting Started
+## **Features**
 
-### Prerequisites
+- **Graphical User Interface (GUI)** for easy interaction.
+- Configurable cache parameters: cache size, block size, and associativity.
+- Simulation of memory accesses with hit/miss tracking.
+- Display of simulation statistics, including hit rate.
 
-Make sure you have the following installed:
+## **Project Structure**
 
-- Python (version x.x)
-- Tkinter library
+The project is organized into the following main files:
 
-### Installation
+1. **`cache_simulator.py`**: Contains the `CacheSimulator` class, which represents the cache memory system and its operations.
+2. **`gui.py`**: Contains the `CacheSimulatorGUI` class, responsible for creating the graphical user interface using Tkinter.
+3. **`main.py`**: The main script that initializes the Tkinter application and runs the GUI.
 
-1. Clone the repository:
+## **Installation**
+
+1. Clone the repository to your local machine:
 
    ```bash
    git clone https://github.com/your-username/cache-simulator.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
    cd cache-simulator
    ```
 
-2. Install dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-1. Run the application:
+3. Run the main script:
 
    ```bash
    python main.py
    ```
 
-2. Input cache parameters through the GUI.
-3. Observe the simulation results, including cache hits, misses, and overall performance.
+   *Note: Make sure you have Python installed on your system.*
 
-## Implementation Details
+## **Usage**
 
-The core functionality is encapsulated in the `CacheSimulator` class, providing methods for cache initialization, LRU-based updates, and visual representation. The `CacheSimulatorGUI` class utilizes Tkinter for the GUI implementation.
+### 1. Launch the Application
 
-```python
-# Example code snippet:
-from cache_simulator import CacheSimulator, CacheSimulatorGUI
+- Follow the installation instructions.
+- Execute the main script to launch the GUI.
 
-# Instantiate the CacheSimulator class and run simulations
-cache_simulator = CacheSimulator(cache_size=1024, block_size=64, associativity=2)
-cache_simulator.simulate_memory_accesses(memory_accesses=[(0x0A, "R"), (0x0B, "R")], text_widget=log_text)
+### 2. Configure Cache Parameters
 
-# Create and run the GUI
-root = tk.Tk()
-gui = CacheSimulatorGUI(root)
-root.mainloop()
+- Enter the desired cache parameters (cache size, block size, associativity) in the GUI.
+
+### 3. Run Simulation
+
+- Click the "Run Simulation" button to simulate memory accesses and view the results.
+
+### 4. Update Statistics
+
+- Click the "Update Statistics" button to display simulation statistics.
+
+## **Screenshots**
+
+*Include screenshots of your application in this section. You may consider adding images of the GUI, sample simulations, and statistics.*
 ```
 
-## Contributing
-
-Contributions are welcome! Please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [Your License] License. See the [LICENSE](LICENSE) file for details.
-
-Replace `[Your License]` with the actual license you choose for your project. Also, consider adding a `CONTRIBUTING.md` file for detailed contribution guidelines.
