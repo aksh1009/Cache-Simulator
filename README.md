@@ -1,4 +1,4 @@
-#### Cache Simulator
+############ Cache Simulator
 Abstract:
 The Cache Simulator project aims to develop a graphical user interface (GUI) application and to simulate
 memory accesses and analyze the performance of a cache system. The simulator allows users to input
