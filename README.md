@@ -4,11 +4,15 @@ The Cache Simulator project aims to develop a graphical user interface (GUI) app
 memory accesses and analyze the performance of a cache system. The simulator allows users to input
 cache parameters, such as size, block size, and associativity, and then runs a simulation using a
 predefined set of memory accesses. The project is implemented using the Tkinter library in Python.
+
+
 Problem Statement:
 Understanding the behavior and performance of cache memory is crucial for optimizing computer
 systems. This project addresses the need for a tool that provides a visual representation of cache
 interactions, making it easier to comprehend and analyze cache hits and misses. The simulator assists in
 exploring different cache configurations and their impact on overall system performance.
+
+
 Implementation and Methodology:
 The CacheSimulator class is the core of the cache simulation implementation. It initializes a cache with
 user-specified parameters such as size, block size, and associativity. The private method _log2 is used
