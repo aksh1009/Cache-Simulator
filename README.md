@@ -1,4 +1,3 @@
-
 # **Cache Simulator**
 
 ## **Table of Contents**
@@ -12,11 +11,12 @@
   - [Configure Cache Parameters](#2-configure-cache-parameters)
   - [Run Simulation](#3-run-simulation)
   - [Update Statistics](#4-update-statistics)
+- [Implementation Details](#implementation-details)
 - [Screenshots](#screenshots)
 
 ## **Overview**
 
-**Cache Simulator** is a Python program that provides a visual representation of cache memory behavior. The simulator allows users to configure cache parameters, run simulations of memory accesses, and view detailed statistics.
+The Cache Simulator project provides a graphical user interface (GUI) application for simulating memory accesses and analyzing cache system performance. The simulator allows users to configure cache parameters and visualize the behavior of different cache configurations.
 
 ## **Features**
 
@@ -38,7 +38,7 @@ The project is organized into the following main files:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/cache-simulator.git
+   git clone https://github.com/aksh1009/cache-simulator.git
    ```
 
 2. Navigate to the project directory:
@@ -74,8 +74,26 @@ The project is organized into the following main files:
 
 - Click the "Update Statistics" button to display simulation statistics.
 
-## **Screenshots**
+## **Implementation Details**
 
-*Include screenshots of your application in this section. You may consider adding images of the GUI, sample simulations, and statistics.*
+The core functionality is encapsulated in the `CacheSimulator` class, providing methods for cache initialization, LRU-based updates, and visual representation. The `CacheSimulatorGUI` class utilizes Tkinter for the GUI implementation.
+
+```python
+# Example code snippet:
+from cache_simulator import CacheSimulator, CacheSimulatorGUI
+
+# Instantiate the CacheSimulator class and run simulations
+cache_simulator = CacheSimulator(cache_size=1024, block_size=64, associativity=2)
+cache_simulator.simulate_memory_accesses(memory_accesses=[(0x0A, "R"), (0x0B, "R")], text_widget=log_text)
+
+# Create and run the GUI
+root = tk.Tk()
+gui = CacheSimulatorGUI(root)
+root.mainloop()
 ```
+
+This code snippet demonstrates how to use the `CacheSimulator` and `CacheSimulatorGUI` classes in your Python script.
+
+## **Screenshots**
+<img width="627" alt="image" src="https://github.com/aksh1009/cache-simulator/assets/143216212/61dbac23-4240-4b3b-97d4-9c08b5661fb7"> <img width="624" alt="image" src="https://github.com/aksh1009/cache-simulator/assets/143216212/935b9181-083e-4ea7-93fe-807f06c8a090">
 
