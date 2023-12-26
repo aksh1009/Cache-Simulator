@@ -55,6 +55,26 @@ The project is organized into the following main files:
 
    *Note: Make sure you have Python installed on your system.*
 
+   *Tkinter is usually included with standard Python installations, so you typically don't need to install it separately using `pip`. However, if you encounter issues or if you're using a virtual environment, you can try the following command:*
+
+   ```bash
+   pip install tk
+   ```
+
+   *Keep in mind that the actual package name might vary depending on your operating system. If you're on Linux, you might need to use:*
+
+   ```bash
+   sudo apt-get install python3-tk
+   ```
+
+   *On macOS, you can use Homebrew:*
+
+   ```bash
+   brew install python-tk
+   ```
+
+
+
 ## **Usage**
 
 ### 1. Launch the Application
